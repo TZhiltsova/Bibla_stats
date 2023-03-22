@@ -1,10 +1,25 @@
 import pandas as pd
 import openpyxl
+import datetime
 
 book = openpyxl.load_workbook('Статистика библа 21-23.xlsx')
 sheet = book['Библиотека 2023']
 row = sheet.max_row
-print(sheet['D6'].value)
+week_start = sheet['C2'].value
+uni_let =
+day_people = {}
+for n in range(7):
+    day_from_first = datetime.timedelta(n)
+    day = (week_start + day_from_first).strftime("%m.%d")
+    print(day)
+    count = []
+    for i in range (5, 12):
+        count.append(sheet['D' + str(i)].value)
+    day_people[day] = count
+
+for key, val in day_people.items():
+    print(key, val)
+
 '''
 wb = xw.Book('Статистика библа 21-23.xlsx') # Открываем книгу
 data_excel = wb.sheets['Библиотека 2023'] # Читаем лист Данные
