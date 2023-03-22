@@ -3,6 +3,7 @@ import openpyxl
 
 book = openpyxl.load_workbook('Статистика библа 21-23.xlsx')
 sheet = book['Библиотека 2023']
+row = sheet.max_row
 print(sheet['D6'].value)
 '''
 wb = xw.Book('Статистика библа 21-23.xlsx') # Открываем книгу
