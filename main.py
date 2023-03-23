@@ -6,15 +6,16 @@ book = openpyxl.load_workbook('Статистика библа 21-23.xlsx')
 sheet = book['Библиотека 2023']
 row = sheet.max_row
 week_start = sheet['C2'].value
-uni_let =
 day_people = {}
 for n in range(7):
     day_from_first = datetime.timedelta(n)
     day = (week_start + day_from_first).strftime("%m.%d")
     print(day)
     count = []
-    for i in range (5, 12):
-        count.append(sheet['D' + str(i)].value)
+    for t in range(7):
+        uni_let = ord('C') + t
+        for i in range (5, 12):
+            count.append(sheet[chr(uni_let) + str(i)].value)
     day_people[day] = count
 
 for key, val in day_people.items():
